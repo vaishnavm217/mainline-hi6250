@@ -21,7 +21,10 @@ obj-y				+= pci/
 obj-$(CONFIG_PARISC)		+= parisc/
 obj-$(CONFIG_RAPIDIO)		+= rapidio/
 obj-y				+= video/
+obj-y				+= devkit/lcdkit/
+obj-$(CONFIG_HUAWEI_LCD_PANEL)  += huawei_platform/lcd/
 obj-y				+= idle/
+obj-$(CONFIG_HISI_BOOTDEVICE)   += bootdevice/
 
 # IPMI must come before ACPI in order to provide IPMI opregion support
 obj-y				+= char/ipmi/
@@ -186,3 +189,40 @@ obj-$(CONFIG_SIOX)		+= siox/
 obj-$(CONFIG_GNSS)		+= gnss/
 obj-$(CONFIG_INTERCONNECT)	+= interconnect/
 obj-$(CONFIG_COUNTER)		+= counter/
+
+# Huawei additions
+
+
+obj-$(CONFIG_HI_VCODEC_VENC_HI3660) += vcodec/hi_vcodec/venc/drv/venc/
+obj-$(CONFIG_HI_VCODEC_VENC_HIVNA) += vcodec/hi_vcodec/venc_hivna/drv/venc/
+
+obj-$(CONFIG_HI_VCODEC_VDEC_HI3660) += vcodec/hi_vcodec/vdec/
+obj-$(CONFIG_HI_VCODEC_VDEC_HIVNA) += vcodec/hi_vcodec/vdec_hivna/
+
+ifeq ($(BOARD_CHARGER_ENABLE_DRM),true)
+obj-$(CONFIG_IMAGINATION_D5500_DRM_VCODEC)  += vcodec/imagination/D5500_DRM/
+else
+obj-$(CONFIG_IMAGINATION_D5500_VCODEC)  += vcodec/imagination/D5500/
+endif
+obj-$(CONFIG_HISILICON_PLATFORM)+= hisi/
+obj-$(CONFIG_HUAWEI_PLATFORM) += huawei_platform/
+obj-$(CONFIG_HUAWEI_DSM)        += dsm/
+obj-$(CONFIG_HUAWEI_WPA_DMD) += wpa_dmd/
+obj-$(CONFIG_CONNECTIVITY_HI110X) += connectivity/
+obj-$(CONFIG_LOGGER_EXTEND) += log/
+obj-$(CONFIG_CONTEXTHUB)        += contexthub/
+obj-$(CONFIG_HW_GADGET) += hwusb/
+obj-$(CONFIG_HUAWEI_BFM) += hwbfm/
+obj-$(CONFIG_HW_ZEROHUNG) += hwzerohung/
+obj-$(CONFIG_HW_FDLEAK) += hwfdleak/
+obj-$(CONFIG_HW_ERECOVERY) += hwerecovery/
+obj-$(CONFIG_HW_WIFI)       += hwnet/
+obj-y += devkit/tpkit/
+obj-$(CONFIG_AUDIOKIT) += devkit/audiokit/
+obj-$(CONFIG_HW_CPULOAD_NOTI) += cpuload/
+obj-$(CONFIG_HW_MEMORY_MONITOR) += mmonitor/
+obj-$(CONFIG_HW_MEMORY_MONITOR) += allocpages_delayacct/
+obj-y += cfi/
+obj-$(CONFIG_HUAWEI_DUBAI) += dubai/
+obj-$(CONFIG_HUAWEI_STORAGE_ROFA) += storage_rofa/
+obj-$(CONFIG_OASES) += oases/

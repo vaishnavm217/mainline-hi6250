@@ -7,6 +7,10 @@
 # I2C drivers should come before other drivers, otherwise they'll fail
 # when compiled as builtin drivers
 #
+ifeq ($(CONFIG_MEDIA_CEC_EDID),y)
+  obj-$(CONFIG_MEDIA_SUPPORT) += cec-edid.o
+endif
+
 obj-y += i2c/ tuners/
 obj-$(CONFIG_DVB_CORE)  += dvb-frontends/
 
@@ -29,6 +33,5 @@ obj-$(CONFIG_CEC_CORE) += cec/
 # Finally, merge the drivers that require the core
 #
 
-obj-y += common/ platform/ pci/ usb/ mmc/ firewire/ spi/
+obj-y += common/ platform/ pci/ usb/ mmc/ firewire/ spi/ huawei/ jpeg/
 obj-$(CONFIG_VIDEO_DEV) += radio/
-
